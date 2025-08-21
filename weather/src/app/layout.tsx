@@ -1,5 +1,3 @@
-"use client";
-import Provider from "./theme";
 import "./globals.css";
 
 export default function RootLayout({
@@ -9,9 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Provider>{children}</Provider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
