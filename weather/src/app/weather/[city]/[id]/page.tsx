@@ -1,4 +1,5 @@
-import getAPI from "@/api";
+import { getApiForcast } from "@/api";
+
 import WeatherDetails from "@/component/weatherDetail";
 import { redirect } from "next/navigation";
 
@@ -7,16 +8,16 @@ export default async function WeatherCityPage({
 }: {
   params: { city: string };
 }) {
-  const { city } = params;
+  const { city } = await params;
 
   if (!city) redirect("/");
 
   try {
-    const data = await getAPI(city);
+    const data = await getApiForcast(city);
     if (!data) redirect("/");
     return (
       <>
-        <WeatherDetails data={data} />;
+        <WeatherDetails data={data} />
       </>
     );
   } catch {

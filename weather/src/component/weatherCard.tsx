@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ChevronsRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { isBezierDefinition, motion } from "framer-motion";
 
 import WeatherAnimation from "./animation";
 
@@ -157,7 +157,7 @@ export default function WeatherCards({ data }: { data: WeatherData }) {
 
                   {/* دکمه پایین */}
                   <Link
-                    href={`/weather/${data.location.name}`}
+                    href={`/weather/${data.location.name}/${idx}`}
                     className="flex items-center justify-center mt-2 text-cyan-300 hover:text-cyan-400 font-semibold transition-colors"
                   >
                     Explore More <ChevronsRight size={18} className="ml-1" />
