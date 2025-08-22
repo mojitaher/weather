@@ -1,32 +1,61 @@
 "use client";
-import CityInput from "@/component/CityInput";
-import SearchButton from "@/component/searchButton";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-
+import { motion } from "framer-motion";
+import CityInput from "@/component/CityInput";
+import { SearchButton } from "@/component/CityInput";
 export default function Home() {
   const [city, setCity] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [lastCity, setLastCity] = useState<string | null>(null);
   const router = useRouter();
-
+  useEffect(() => {
+    const storedCity = localStorage.getItem("lastCity");
+    if (storedCity) setLastCity(storedCity);
+  }, []);
   const handleSearch = () => {
     if (!city) {
-      setError("city is not found");
       return;
     }
-    {
-      setError(null);
-      localStorage.setItem("lastCity", city);
-      router.push(`/weather?city=${city}`);
-    }
+    localStorage.setItem("lastCity", city);
+    setLastCity(city);
+
+    router.push(`/weather?city=${city}`);
   };
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-500 to-indigo-700 text-white">
-      <h1 className="text-4xl font-bold mb-6">Weather App 🌦️</h1>
-      <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col gap-4 w-80">
-        <CityInput city={city} setCity={setCity} error={error} />
+    <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex flex-col items-center justify-center p-6">
+      <motion.h1
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        className="text-4xl md:text-6xl font-extrabold text-white text-center mb-10 drop-shadow-lg"
+      >
+        🌦️ Welcome to Your Weather Universe
+      </motion.h1>
+      {lastCity && (
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 20 }}
+          className="w-full max-w-md mb-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-lg px-6 py-4 flex items-center justify-between text-white font-bold"
+        >
+          <span>🌇 Last searched city: {lastCity}</span>
+          <button
+            className="text-sm bg-cyan-400/80 hover:bg-cyan-500 px-3 py-1 rounded-lg"
+            onClick={() => router.push(`/weather?city=${lastCity}`)}
+          >
+            View Weather
+          </button>
+        </motion.div>
+      )}
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        className="w-full max-w-md flex flex-col gap-4 z-10"
+      >
+        <CityInput city={city} setCity={setCity} />
         <SearchButton onClick={handleSearch} />
-      </div>
+      </motion.div>
     </div>
   );
 }
