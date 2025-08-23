@@ -7,17 +7,16 @@ export default async function WeatherPage({
 }: {
   searchParams: { city?: string };
 }) {
-  const city = searchParams.city;
+  const { city } = await searchParams;
 
   if (!city) {
-    redirect("/");
+    redirect("/not-found");
   }
 
   try {
     const data = await getApiForcast(city);
     return <WeatherCard data={data} />;
   } catch {
-    alert("not found");
-    redirect("/");
+    redirect("/not-found");
   }
 }

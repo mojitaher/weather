@@ -14,13 +14,13 @@ export default async function WeatherCityPage({
 
   try {
     const data = await getApiForcast(city);
-    if (!data) redirect("/");
+    if (!data) redirect("/not-found");
     return (
       <>
         <WeatherDetails data={data} />
       </>
     );
   } catch {
-    redirect("/");
+    redirect("/not-found");
   }
 }

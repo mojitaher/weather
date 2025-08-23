@@ -65,3 +65,14 @@ body {
 .animate-slide-up {
   animation: slideInUp 0.8s ease-out forwards;
 }
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 4s linear infinite;
+  }
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  .animate-bounce-slower {
+    animation: bounce 3s infinite;
+  }
+}

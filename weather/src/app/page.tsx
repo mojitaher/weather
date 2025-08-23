@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import CityInput from "@/component/CityInput";
+import { CloudSunIcon } from "lucide-react";
 import { SearchButton } from "@/component/CityInput";
+
 export default function Home() {
   const [city, setCity] = useState("");
   const [lastCity, setLastCity] = useState<string | null>(null);
@@ -13,7 +15,8 @@ export default function Home() {
     if (storedCity) setLastCity(storedCity);
   }, []);
   const handleSearch = () => {
-    if (!city) {
+    if (!city || city.trim().length <= 2) {
+      alert("city is not found");
       return;
     }
     localStorage.setItem("lastCity", city);
@@ -29,7 +32,8 @@ export default function Home() {
         transition={{ type: "spring", stiffness: 120, damping: 20 }}
         className="text-4xl md:text-6xl font-extrabold text-white text-center mb-10 drop-shadow-lg"
       >
-        🌦️ Welcome to Your Weather Universe
+        <CloudSunIcon width={50} height={50} />
+        Welcome to Your Weather Universe
       </motion.h1>
       {lastCity && (
         <motion.div
