@@ -5,7 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_BASE;
 
 export async function getApiForcast(city) {
   const res = await axios.get(
-    `${baseUrl}/forecast.json?q=${city}&key=${API_KEY}&days=3`
+    `${BASE_URL}/forecast.json?q=${city}&key=${API_KEY}&days=3`
   );
   return res.data;
 }
