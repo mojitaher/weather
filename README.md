@@ -34,7 +34,7 @@ To run this project, you need to set up your own API keys.
 
 1. Go to [WeatherAPI](https://www.weatherapi.com/) and create a free account.
 2. Copy your API key from the dashboard.
-3. Create a `.env.local` file (or just run `npm run setup`).
+3. Create a `.env.local` file.
 4. Add your values:
 
 We are using environment variables to store API keys and configs.
