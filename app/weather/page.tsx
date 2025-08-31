@@ -7,7 +7,7 @@ export default async function WeatherPage({
 }: {
   searchParams: { city?: string };
 }) {
-  const { city } = await searchParams;
+  const { city } = searchParams;
 
   if (!city) {
     redirect("/not-found");

@@ -6,11 +6,11 @@ import { redirect } from "next/navigation";
 export default async function WeatherCityPage({
   params,
 }: {
-  params: { city: string };
+  params: { city: string; id: string };
 }) {
-  const { city } = params;
+  const { city, id } = params;
 
-  if (!city) redirect("/");
+  if (!city || !id) redirect("/");
 
   try {
     const data = await getApiForcast(city);
