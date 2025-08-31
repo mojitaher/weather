@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ChevronsRight } from "lucide-react";
-import { isBezierDefinition, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import WeatherAnimation from "./animation";
 
