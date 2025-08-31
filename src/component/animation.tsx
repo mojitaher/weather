@@ -6,10 +6,15 @@ import Snow from "@/animation/Snowing.json";
 import Rain from "@/animation/rain.json";
 import Thunder from "@/animation/Weerplaza.json";
 import Deafult from "@/animation/deafult.json";
-type LottieJSON = typeof Sunny;
 
+type WeatherJSON =
+  | typeof Sunny
+  | typeof Cloudy
+  | typeof Rain
+  | typeof Snow
+  | typeof Thunder;
 export default function WeatherAnimation({ code }: { code: number }) {
-  const weatherIcons: Record<number, LottieJSON> = {
+  const weatherIcons: Record<number, WeatherJSON> = {
     1000: Sunny,
     1003: Cloudy,
     1006: Cloudy,
