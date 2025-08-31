@@ -3,8 +3,9 @@ import { getApiForcast } from "@/api";
 import WeatherDetails from "@/component/weatherDetail";
 import { redirect } from "next/navigation";
 
-export default async function WeatherCityPage({ params }: unknown) {
-  const { city, id } = params as { city: string; id: string };
+export default async function WeatherCityPage(props: any) {
+  const { city, id } = (props as { params: { city: string; id: string } })
+    .params;
 
   if (!city || !id) redirect("/");
 

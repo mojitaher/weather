@@ -2,8 +2,12 @@ import { getApiForcast } from "@/api";
 import WeatherCard from "@/component/weatherCard";
 import { redirect } from "next/navigation";
 
-export default async function WeatherPage({ searchParams }: unknown) {
-  const { city } = searchParams as { city?: string };
+export default async function WeatherPage({
+  searchParams,
+}: {
+  searchParams: { city?: string };
+}) {
+  const { city } = searchParams;
 
   if (!city) {
     redirect("/not-found");
