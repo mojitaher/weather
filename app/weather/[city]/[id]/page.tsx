@@ -8,7 +8,7 @@ export default async function WeatherCityPage({
 }: {
   params: { city: string };
 }) {
-  const { city } = await params;
+  const { city } = params;
 
   if (!city) redirect("/");
 
