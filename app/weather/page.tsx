@@ -1,28 +1,28 @@
+// src/app/weather/page.tsx
+"use client";
+
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { getApiForcast } from "@/api";
 import WeatherCard from "@/component/weatherCard";
-import { redirect } from "next/navigation";
 
-export default async function WeatherPage({
-  searchParams,
-}: {
-  searchParams: { city?: string };
-}) {
-  const { city } = searchParams;
+export default function WeatherPage() {
+  const searchParams = useSearchParams();
+  const city = searchParams.get("city");
+  const router = useRouter();
+  const [data, setData] = useState<any>(null);
 
-  if (!city) {
-    redirect("/not-found");
-  }
-
-  try {
-    const data = await getApiForcast(city);
-
-    if (!data) {
-      redirect("/not-found");
+  useEffect(() => {
+    if (!city) {
+      router.push("/not-found");
+      return;
     }
 
-    return <WeatherCard data={data} />;
-  } catch (error) {
-    console.error("API fetch error:", error);
-    redirect("/not-found");
-  }
+    getApiForcast(city)
+      .then((res) => setData(res))
+      .catch(() => router.push("/not-found"));
+  }, [city, router]);
+
+  if (!data) return <div>Loading...</div>;
+  return <WeatherCard data={data} />;
 }
