@@ -1,5 +1,7 @@
 "use client";
 import Lottie from "lottie-react";
+import type { AnimationData } from "lottie-react";
+
 import Sunny from "@/animation/sunny.json";
 import Cloudy from "@/animation/cloudy.json";
 import Snow from "@/animation/Snowing.json";
@@ -7,8 +9,12 @@ import Rain from "@/animation/rain.json";
 import Thunder from "@/animation/Weerplaza.json";
 import Deafult from "@/animation/deafult.json";
 
-export default function WeatherAnimation({ code }: { code: number }) {
-  const weatherIcons: Record<number, any> = {
+interface WeatherAnimationProps {
+  code: number;
+}
+
+export default function WeatherAnimation({ code }: WeatherAnimationProps) {
+  const weatherIcons: Record<number, AnimationData> = {
     // آفتابی
     1000: Sunny,
     // ابری
@@ -38,9 +44,8 @@ export default function WeatherAnimation({ code }: { code: number }) {
     1279: Thunder,
     1282: Thunder,
   };
-  if (!weatherIcons[code]) {
-    return <Lottie animationData={Deafult} loop />;
-  }
 
-  return <Lottie animationData={weatherIcons[code]} loop />;
+  const animationData = weatherIcons[code] || Deafult;
+
+  return <Lottie animationData={animationData} loop />;
 }
