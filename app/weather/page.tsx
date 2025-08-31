@@ -15,8 +15,14 @@ export default async function WeatherPage({
 
   try {
     const data = await getApiForcast(city);
+
+    if (!data) {
+      redirect("/not-found");
+    }
+
     return <WeatherCard data={data} />;
-  } catch {
+  } catch (error) {
+    console.error("API fetch error:", error);
     redirect("/not-found");
   }
 }
