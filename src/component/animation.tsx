@@ -6,12 +6,10 @@ import Snow from "@/animation/Snowing.json";
 import Rain from "@/animation/rain.json";
 import Thunder from "@/animation/Weerplaza.json";
 import Deafult from "@/animation/deafult.json";
-
-// به جای هر type پیچیده‌ای، any میدیم تا build روی Vercel بدون خطا بره
-type AnimationJSON = any;
+type LottieJSON = typeof Sunny;
 
 export default function WeatherAnimation({ code }: { code: number }) {
-  const weatherIcons: Record<number, AnimationJSON> = {
+  const weatherIcons: Record<number, LottieJSON> = {
     1000: Sunny,
     1003: Cloudy,
     1006: Cloudy,
