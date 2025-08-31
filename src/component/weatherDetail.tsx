@@ -10,9 +10,55 @@ import {
   Wind,
   Thermometer,
 } from "lucide-react";
-import { dataType } from "@/types/data"; // فرض گرفتم تایپ رو داری
 
-export default function WeatherDetails({ data }: { data: dataType }) {
+// ---------- تایپ‌ها ----------
+type Condition = {
+  text: string;
+  icon: string;
+  code: number;
+};
+
+type Day = {
+  maxtemp_c: number;
+  mintemp_c: number;
+  avgtemp_c: number;
+  maxwind_kph: number;
+  totalprecip_mm: number;
+  avgvis_km: number;
+  avghumidity: number;
+  condition: Condition;
+};
+
+type ForecastDay = {
+  date: string;
+  day: Day;
+};
+
+type Forecast = {
+  forecastday: ForecastDay[];
+};
+
+type Location = {
+  name: string;
+  country: string;
+};
+
+type Current = {
+  temp_c: number;
+  feelslike_c: number;
+  humidity: number;
+  wind_kph: number;
+  condition: Condition;
+};
+
+type DataType = {
+  location: Location;
+  current: Current;
+  forecast: Forecast;
+};
+
+// ---------- کامپوننت ----------
+export default function WeatherDetails({ data }: { data: DataType }) {
   const { id } = useParams();
   const index = Number(id);
   const dayDate = data.forecast.forecastday[index].date;
