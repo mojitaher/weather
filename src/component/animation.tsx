@@ -6,10 +6,9 @@ import Snow from "@/animation/Snowing.json";
 import Rain from "@/animation/rain.json";
 import Thunder from "@/animation/Weerplaza.json";
 import Deafult from "@/animation/deafult.json";
-import Image from "next/image";
 
 export default function WeatherAnimation({ code }: { code: number }) {
-  const weatherIcons = {
+  const weatherIcons: Record<number, any> = {
     // آفتابی
     1000: Sunny,
     // ابری
