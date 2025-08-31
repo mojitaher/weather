@@ -1,6 +1,5 @@
 "use client";
 import Lottie from "lottie-react";
-import type { AnimationData } from "lottie-react";
 
 import Sunny from "@/animation/sunny.json";
 import Cloudy from "@/animation/cloudy.json";
@@ -14,7 +13,7 @@ interface WeatherAnimationProps {
 }
 
 export default function WeatherAnimation({ code }: WeatherAnimationProps) {
-  const weatherIcons: Record<number, AnimationData> = {
+  const weatherIcons: Record<number, any> = {
     // آفتابی
     1000: Sunny,
     // ابری
