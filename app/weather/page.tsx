@@ -1,12 +1,17 @@
+
 import { getApiForcast } from "@/api";
 import WeatherCard from "@/component/weatherCard";
 import { redirect } from "next/navigation";
 
+interface WeatherPageProps {
+  searchParams: Promise<{
+    city?: string;
+  }>;
+}
+
 export default async function WeatherPage({
   searchParams,
-}: {
-  searchParams: { city?: string };
-}) {
+}: WeatherPageProps) {
   const { city } = await searchParams;
 
   if (!city) {
