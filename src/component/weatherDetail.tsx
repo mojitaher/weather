@@ -57,7 +57,6 @@ type DataType = {
   forecast: Forecast;
 };
 
-// ---------- کامپوننت ----------
 export default function WeatherDetails({ data }: { data: DataType }) {
   const { id } = useParams();
   const index = Number(id);
